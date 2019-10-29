@@ -5,26 +5,82 @@
         </div>
         <div class="inputgroup">
             <div class="btn-group">
-             <input type="number" placeholder="请输入手机号"/>
-             <button>获取验证码</button>
+             <input type="number" placeholder="请输入手机号" v-model="phone"/>
+             <button @click="getcode">获取验证码</button>
             </div>
           
-            <input type="number" placeholder="请输入验证码"/>
+            <input type="number" placeholder="请输入验证码" v-model="codenumber" />
         </div>
-        <button class="btn">登录sss</button>
+        <button class="btn" @click="submit">登录</button>
+       
     </div>
 </template>
 
 <script>
+import { Toast } from "mint-ui";
 
 export default {
-    name:'login'
+    name:'login2',
+    data(){
+        return{
+           phone: '',
+           codenumber:''
+           
+        }
+    },
+    methods:{
+       submit:function(){
+          if(!(this.phone=='' || this.codenumber=='' || !(/^1[3456789]\d{9}$/.test(this.phone)))){
+              console.log("可以发请求")
+          }
+          else{
+               if(this.phone==''){
+                Toast({
+                   message:'手机号不能为空！',
+                    duration: 2000,
+               })
+           } else if(this.codenumber==''){
+                 Toast({
+                   message:'验证码不能为空！',
+                    duration: 2000,
+               })
+           } else if(!(/^1[3456789]\d{9}$/.test(this.phone))){
+                      Toast({
+                   message:'手机号码格式错误！',
+                    duration: 2000,
+               })
+             
+               }
+            
+          }
+
+
+       },
+       getcode:function(){
+           
+           if(this.phone==''){
+           Toast({
+                   message:'手机号码不能为空！',
+                    duration: 2000,
+               })
+               return false;
+           }
+           else{
+               if(!(/^1[3456789]\d{9}$/.test(this.phone))){
+                      Toast({
+                   message:'手机号码格式错误！',
+                    duration: 2000,
+               })
+               return false;
+               }
+           }
+       }
+    }
 }
 
 </script>
 
 <style scoped>
-
   .container{
       height: 100%;
       width: 100%;
@@ -55,7 +111,7 @@ export default {
   }
 
   .inputgroup input:nth-child(1){
-      width: 11.5rem;
+      width: 60%;
       border-right: none;
   }
   .inputgroup input:nth-child(2){

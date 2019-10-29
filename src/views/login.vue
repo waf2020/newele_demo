@@ -1,62 +1,98 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="../assets/images/logo.jpg"/>
-        </div>
-        <div class="inputgroup">
-           <input type="number" placeholder="请输入手机号"/>
-           <button>获取验证码</button>
-           <br><br>
-           <input type="number" placeholder="请输入验证码"/>
-        </div>
-        <button class="btn">登录</button>
+            <img src="../assets/images/logo.jpg">
+        </div> 
+      
+       <inputgroup 
+       type="Number"
+        placeholder="请输入手机号" butTitle="获取验证码" 
+        v-model="phone"
+       />
+
+       <inputgroup 
+       type="text"
+       placeholder="验证码" 
+        v-model="vercode"
+       />
+     <div class="login_des">
+         <p>新用户登录剂自动注册，表示已同意 <span>《用户服务协议》</span></p>
+     </div>
+
+  <button class="login_btn">登录</button>
+       
+       
     </div>
 </template>
 
 <script>
+import inputgroup from '../components/inputgroup.vue'
 export default {
-    name:'login'
+    name:'login',
+    data(){
+        return{
+           phone:'',
+           vercode:'',
+           disabled:true
+           
+        }
+    },
+    components:{
+       inputgroup
+    },
+    methods:{
+         getphone(){
+             console.log("this.phone==="+this.phone)
+         }  
+    },
+    created(){
+     
+    }
 }
 </script>
 
-<style scoped>
-  .container{
+<style scoped lang="scss">
+
+  .container {
+      width: 100%;
       height: 100%;
-      width: 100%;
-      padding:2.625rem;
+      padding: px(32);
       box-sizing: border-box;
-      background-color: #fff;
-  } 
+  }
   .logo {
-     text-align: center;
+      text-align: center;
+      margin-bottom: px(20);
   }
-  .logo img{
-     width: 150px;
+  .logo img {
+      width: px(150);
   }
-  .inputgroup {
-      color: black;
+  .login_des p {
+     color: #aaa;
+     font-size: px(15);
+     line-height: px(22);
+  }
+  .login_btn {
       width: 100%;
-      margin-top: 1.875rem;
-      
+      background-color: #48ca38;
+      height: px(40);
+      border: none;
+      border-radius:px(5);
+      color: white;
+      outline: none;
+     
   }
-  .inputgroup > input:nth-child(1) {
-      width:70%;
-      border-right: 1px solid transparent;
+  .login_des ,
+  .login_btn,
+  .text_group{
+      margin: px(20) 0;
   }
-  .inputgroup > input {
-      width: 100%;
-      border: 1px solid #ccc;
-      height: 2rem;
-      padding-left: 6px;
-      vertical-align:middle;
-      
-  }
-  .inputgroup > button {
-      height: 2.25rem;
-      vertical-align:middle;
-      width: 25%;
-      border: 1px solid #ccc;
-      background-color: #fff;
-  }
+.login_des >p >span {
+    color: deepskyblue;
+}
+  @media screen and (max-width: 320px) {
+    .container {
+        padding: px(19);
+    }
+}
 
 </style>

@@ -1,0 +1,9 @@
+@function px($px){
+    @return $px /16 + rem;
+}
+
+@media screen and (max-width: 320px) {
+    .container {
+        padding: px(10);
+    }
+}
