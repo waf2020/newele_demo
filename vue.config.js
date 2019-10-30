@@ -6,7 +6,7 @@ module.exports={
       hotOnly:false,//webpack 已经试下了热更新，这里false即可
       proxy:{
         '/api':{
-          target:"http://v.juhe.cn/",
+          target:"https://ele-interface.herokuapp.com/api/",
           ws:true,
           changeOrigin : true,
           pathRewrite:{

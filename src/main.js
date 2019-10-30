@@ -3,11 +3,13 @@ import App from './App.vue'
 import router from './router'
 import './assets/css/index.scss'
 
+import axios from 'axios'
 
+Vue.prototype.$axios=axios;
 import 'mint-ui/lib/style.css'
 
-// import {Toast,Button} from 'mint-ui'
-// Vue.component(Toast.name,Toast);
+ import {Toast} from 'mint-ui'
+ Vue.component(Toast.name,Toast);
 // Vue.component(Button.name, Button);
 
 
