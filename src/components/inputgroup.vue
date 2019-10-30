@@ -1,6 +1,6 @@
 <template>
       <div class="text_group">
-      <div class="input-group">
+      <div class="input-group" :class="{'error-border-style':errors}">
              <input 
              :disabled="disabled"
              :placeholder="placeholder" 
@@ -8,11 +8,11 @@
              :type="type"
              :name="name"
              @input="$emit('inputvalues',$event.target.value)"/>  <!-- 获取input表单的值 -->
-             <button v-if="butTitle">{{butTitle}}</button>
-          <div v-if="error" class="error">{{error}}</div>
+             <button v-if="butTitle" @click="$emit('btn_click')">{{butTitle}}</button>
+          
        
        </div>
-       
+       <div v-if="errors" class="error-style">{{errors}}</div>
 </div>
   
     
@@ -31,7 +31,7 @@ export default {
         name:String,
         butTitle:String,
         disabled:Boolean,
-        error:String
+        errors:String
     },
     created(){
         
@@ -77,8 +77,17 @@ export default {
   background: #fff;
   outline: none;
   
-  
    
+}
+input:disabled {
+  background-color: #fff;
+}
+.error-style {
+  color: red;
+  font-size: px(14); 
+}
+.error-border-style {
+  border: 1px solid red;
 }
 
 
